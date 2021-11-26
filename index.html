@@ -23,7 +23,7 @@
                         <option selected value="1">sitting</option>
                     <select>
                     <br><br>
-            
+
                     <!--Eyes-->
                     <span>Eyes</span>
                     <br>
@@ -32,7 +32,7 @@
                         <option value="ct">circletears</option>
                         <option value="ch">closedhappy</option>
                         <option value="cs">closedsad</option>
-                        <option value="ct">cute</option>
+                        <option value="cu">cute</option>
                         <option selected value="nm">normal</option>
                         <option value="pl">pleading</option>
                         <option value="sc">scared</option>
@@ -47,7 +47,7 @@
                         <option value="wr">winkright</option>
                     <select>
                     <br><br>
-            
+
                     <!--Eyebrows-->
                     <span>Eyebrows</span>
                     <br>
@@ -59,7 +59,7 @@
                         <option value="t">think</option>
                     <select>
                     <br><br>
-            
+
                     <!--Mouth-->
                     <span>Mouth</span>
                     <br>
@@ -97,7 +97,7 @@
                         <option value="wr">worried</option>
                     <select>
                     <br><br>
-            
+
                     <!--Blush-->
                     <span>Blush</span>
                     <br>
@@ -107,14 +107,14 @@
                         <option value="l">light</option>
                     <select>
                     <br><br>
-            
+
                 <!--Tears-->
                 <span>Tears</span>
                 <br>
                 <select id="tears_control" onchange="update_layer('tears')">
                         <option selected value="">(none)</option>
                 </select>
-                <br><br> 
+                <br><br>
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
             function update_layer(layer) {
                 var text = $("#" + layer + "_control :selected").text()
                 if (text === "(none)")
-                {   
+                {
                     // We use Date here to ensure images aren't cached by spoofing a request for the newest ver.
                     $("#" + layer + "_layer").attr("src", "./img/etc/empty.png" + "?" + new Date())
                 }
@@ -146,7 +146,7 @@
                     // We use Date here to ensure images aren't cached by spoofing a request for the newest ver.
                     $("#" + layer + "_layer").attr("src", "./img/" + layer + "/" + text + ".png" + "?" + new Date())
                 }
-                
+
                 // Update the sprite code displayed to the user
                 update_sprite_code()
             }
