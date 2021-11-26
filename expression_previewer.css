@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    font-size: 45px;
+}
+
+select {
+    width: 200px;
+    margin: 3px;
+}
+
+option {
+    text-align: center;
+}
+
+.image_layer {
+    position: absolute;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.highlight {
+    color: chocolate;
+}
+
+.interactive {
+  color: steelblue;
+  cursor: pointer;
+  user-select: none;
+}
+
+.interactive:active {
+  color: blue;
+}
+
+.split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .left {
+    width: 17%;
+    left: 0;
+    background-color: white;
+  }
+  
+  .right {
+    width: 83%;
+    right: 0;
+    background-color: white;
+  }
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .i_hate_css {
+    top: 15%;
+    left: 15%;
+  }
+
+  img #back_layer {
+    z-index: 0;
+  }
+  img #blush_layer {
+    z-index: 1;
+  }
+  img #hair_layer {
+    z-index: 2;
+  }
+  img #eyes_layer {
+    z-index: 3;
+  }
+  img #eyebrows_layer {
+    z-index: 4;
+  }
+  img #mouth_layer {
+    z-index: 5;
+  }
+  img #tears_layer {
+    z-index: 6;
+  }
+  img #table_layer {
+    z-index: 7;
+  }

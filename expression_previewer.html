@@ -1,0 +1,176 @@
+<html>
+    <title>JN expression previewer</title>
+    <head>
+        <link rel="stylesheet" href="expression_previewer.css"/>
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="expression_previewer.js"></script>
+    </head>
+    <body>
+        <div class="split left">
+            <div class="centered">
+                <!--User options-->
+                <div class="controls">
+                    <!--Code-->
+                    <span class="bold">Sprite code:</span>
+                    <span id="sprite_code" class="bold highlight">N/A</span>
+                    <span class="bold interactive" onclick="copy_code_to_clipboard()" title="Copy sprite code to clipboard">copy</span>
+                    <br><br>
+
+                    <!--Pose-->
+                    <span>Pose</span>
+                    <br>
+                    <select id="pose_control">
+                        <option selected value="1">sitting</option>
+                    <select>
+                    <br><br>
+            
+                    <!--Eyes-->
+                    <span>Eyes</span>
+                    <br>
+                    <select id="eyes_control" onchange="update_layer('eyes')">
+                        <option value="bk">baka</option>
+                        <option value="ct">circletears</option>
+                        <option value="ch">closedhappy</option>
+                        <option value="cs">closedsad</option>
+                        <option value="ct">cute</option>
+                        <option selected value="nm">normal</option>
+                        <option value="pl">pleading</option>
+                        <option value="sc">scared</option>
+                        <option value="sk">shocked</option>
+                        <option value="sg">smug</option>
+                        <option value="sp">sparkle</option>
+                        <option value="sq">squint</option>
+                        <option value="un">unamused</option>
+                        <option value="wm">warm</option>
+                        <option value="wd">wide</option>
+                        <option value="wl">winkleft</option>
+                        <option value="wr">winkright</option>
+                    <select>
+                    <br><br>
+            
+                    <!--Eyebrows-->
+                    <span>Eyebrows</span>
+                    <br>
+                    <select id="eyebrows_control" onchange="update_layer('eyebrows')">
+                        <option selected value="n">normal</option>
+                        <option value="u">up</option>
+                        <option value="k">knit</option>
+                        <option value="f">furrowed</option>
+                        <option value="t">think</option>
+                    <select>
+                    <br><br>
+            
+                    <!--Mouth-->
+                    <span>Mouth</span>
+                    <br>
+                    <select id="mouth_control" onchange="update_layer('mouth')">
+                        <option value="aj">ajar</option>
+                        <option value="an">angry</option>
+                        <option value="aw">awe</option>
+                        <option value="bg">big</option>
+                        <option value="bs">bigsmile</option>
+                        <option value="bo">bored</option>
+                        <option value="ca">caret</option>
+                        <option value="ct">catty</option>
+                        <option value="dv">devious</option>
+                        <option value="em">embarrassed</option>
+                        <option value="fr">frown</option>
+                        <option value="fu">furious</option>
+                        <option value="gs">gasp</option>
+                        <option value="gn">grin</option>
+                        <option value="lg">laugh</option>
+                        <option value="nv">nervous</option>
+                        <option value="po">pout</option>
+                        <option value="pu">pursed</option>
+                        <option value="sc">scream</option>
+                        <option value="sr">serious</option>
+                        <option value="sk">shock</option>
+                        <option value="sl">slant</option>
+                        <option selected value="sm">smile</option>
+                        <option value="sf">smallfrown</option>
+                        <option value="ss">smallsmile</option>
+                        <option value="sg">smug</option>
+                        <option value="ts">tease</option>
+                        <option value="tr">triangle</option>
+                        <option value="un">uneasy</option>
+                        <option value="up">upset</option>
+                        <option value="wr">worried</option>
+                    <select>
+                    <br><br>
+            
+                    <!--Blush-->
+                    <span>Blush</span>
+                    <br>
+                    <select id="blush_control" onchange="update_layer('blush')">
+                        <option selected value="">(none)</option>
+                        <option value="f">full</option>
+                        <option value="l">light</option>
+                    <select>
+                    <br><br>
+            
+                <!--Tears-->
+                <span>Tears</span>
+                <br>
+                <select id="tears_control" onchange="update_layer('tears')">
+                        <option selected value="">(none)</option>
+                </select>
+                <br><br> 
+                </div>
+            </div>
+        </div>
+        <div class="split right">
+            <!--Canvas; layered images here make up Natsu-->
+            <div class="centered i_hate_css">
+                <img id="back_layer" class="image_layer" src="./img/base.png"/> <!--Body, clothes, hair back, nose-->
+                <img id="blush_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Blush-->
+                <img id="hair_layer" class="image_layer" src="./img/bangs.png"/> <!--Hair-->
+                <img id="eyes_layer" class="image_layer" src="./img/eyes/normal.png"/> <!--Eyes-->
+                <img id="eyebrows_layer" class="image_layer" src="./img/eyebrows/normal.png"/> <!--Eyebrows-->
+                <img id="mouth_layer" class="image_layer" src="./img/mouth/smile.png"/> <!--Mouth-->
+                <img id="tears_layer" class="image_layer" src=""/> <!--Tears-->
+                <img id="table_layer" class="image_layer" src="./img/table/table-normal.png"/> <!--Table-->
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            // When an option is selected, this forces an update of the corresponding image tag's src to show the correct sprite
+            function update_layer(layer) {
+                var text = $("#" + layer + "_control :selected").text()
+                if (text === "(none)")
+                {   
+                    // We use Date here to ensure images aren't cached by spoofing a request for the newest ver.
+                    $("#" + layer + "_layer").attr("src", "./img/etc/empty.png" + "?" + new Date())
+                }
+                else
+                {
+                    // We use Date here to ensure images aren't cached by spoofing a request for the newest ver.
+                    $("#" + layer + "_layer").attr("src", "./img/" + layer + "/" + text + ".png" + "?" + new Date())
+                }
+                
+                // Update the sprite code displayed to the user
+                update_sprite_code()
+            }
+
+            // This generates the sprite code for the currently selected sprite combination seen by the user
+            function update_sprite_code() {
+                var code = $("#pose_control :selected").val()
+                    + $("#eyebrows_control :selected").val()
+                    + $("#eyes_control :selected").val()
+                    + $("#mouth_control :selected").val()
+                    + $("#tears_control :selected").val()
+                    + $("#blush_control :selected").val()
+                $("#sprite_code").text(code)
+            }
+
+            // Copies the currently displayed sprite code to the clipboard
+            function copy_code_to_clipboard() {
+                navigator.clipboard.writeText($("#sprite_code").text())
+            }
+
+            // When the page loads, show the sprite code for the default sprite combination
+            $(document).ready(function() {
+                update_sprite_code()
+            });
+        </script>
+    </body>
+</html>
