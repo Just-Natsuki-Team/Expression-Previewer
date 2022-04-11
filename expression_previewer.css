@@ -10,12 +10,12 @@ header {
     font-size: 45px;
 }
 
-select {
+select, input {
     width: 200px;
     margin: 3px;
 }
 
-option {
+option, input {
     text-align: center;
 }
 
@@ -37,9 +37,13 @@ option {
   user-select: none;
 }
 
-.interactive:active {
-  color: blue;
-}
+  :active {
+    color: blue;
+  }
+
+  .red {
+    color: red;
+  }
 
 .split {
     height: 100%;

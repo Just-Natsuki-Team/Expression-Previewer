@@ -6,18 +6,30 @@
         <script src="expression_previewer.js"></script>
     </head>
     <body>
+        <br><br>
         <div class="split left">
             <div class="centered">
                 <!--User options-->
                 <div class="controls">
-                    <!--Code-->
-                    <span class="bold">Sprite code:</span>
+                    <!--Spritecode output-->
+                    <span class="bold">Showing:</span>
+                    <br>
                     <span id="sprite_code" class="bold highlight">N/A</span>
-                    <span class="bold interactive" onclick="copy_code_to_clipboard()" title="Copy sprite code to clipboard">copy</span>
+                    <br>
+                    <span class="bold interactive" onclick="copy_code_to_clipboard(this)" title="Copy sprite code to clipboard">[copy]</span>
+                    <br><br>
+
+                    <!--Spritecode input-->
+                    <span class="bold">View:</span>
+                    <br>
+                    <input id="input_code" type="text" placeholder="Enter a sprite code">
+                    <span class="bold interactive" onclick="get_from_sprite_code(document.getElementById('input_code').value)" title="View expression from sprite code">[view]</span>
+                    <br><br>
+
                     <br><br>
 
                     <!--Pose-->
-                    <span>Pose</span>
+                    <span class="bold">Pose</span>
                     <br>
                     <select id="pose_control">
                         <option selected value="1">sitting</option>
@@ -25,16 +37,16 @@
                     <br><br>
 
                     <!--Eyes-->
-                    <span>Eyes</span>
+                    <span class="bold">Eyes</span>
                     <br>
                     <select id="eyes_control" onchange="update_layer('eyes')">
                         <option value="bk">baka</option>
-                        <option value="ct">circletears</option>
-                        <option value="ch">closedhappy</option>
-                        <option value="cs">closedsad</option>
+                        <option value="ct">circle_tears</option>
+                        <option value="ch">closed_happy</option>
+                        <option value="cs">closed_sad</option>
                         <option value="cu">cute</option>
-                        <option value="ll">lookleft</option>
-                        <option value="lr">lookright</option>
+                        <option value="ll">look_left</option>
+                        <option value="lr">look_right</option>
                         <option selected value="nm">normal</option>
                         <option value="pl">pleading</option>
                         <option value="sc">scared</option>
@@ -42,18 +54,18 @@
                         <option value="sg">smug</option>
                         <option value="sp">sparkle</option>
                         <option value="sq">squint</option>
-                        <option value="sl">squintleft</option>
-                        <option value="sr">squintright</option>
+                        <option value="sl">squint_left</option>
+                        <option value="sr">squint_right</option>
                         <option value="un">unamused</option>
                         <option value="wm">warm</option>
                         <option value="wd">wide</option>
-                        <option value="wl">winkleft</option>
-                        <option value="wr">winkright</option>
+                        <option value="wl">wink_left</option>
+                        <option value="wr">wink_right</option>
                     <select>
                     <br><br>
 
                     <!--Eyebrows-->
-                    <span>Eyebrows</span>
+                    <span class="bold">Eyebrows</span>
                     <br>
                     <select id="eyebrows_control" onchange="update_layer('eyebrows')">
                         <option selected value="n">normal</option>
@@ -65,14 +77,14 @@
                     <br><br>
 
                     <!--Mouth-->
-                    <span>Mouth</span>
+                    <span class="bold">Mouth</span>
                     <br>
                     <select id="mouth_control" onchange="update_layer('mouth')">
                         <option value="aj">ajar</option>
                         <option value="an">angry</option>
                         <option value="aw">awe</option>
                         <option value="bg">big</option>
-                        <option value="bs">bigsmile</option>
+                        <option value="bs">big_smile</option>
                         <option value="bo">bored</option>
                         <option value="ca">caret</option>
                         <option value="ct">catty</option>
@@ -91,8 +103,8 @@
                         <option value="sk">shock</option>
                         <option value="sl">slant</option>
                         <option selected value="sm">smile</option>
-                        <option value="sf">smallfrown</option>
-                        <option value="ss">smallsmile</option>
+                        <option value="sf">small_frown</option>
+                        <option value="ss">small_smile</option>
                         <option value="sg">smug</option>
                         <option value="ts">tease</option>
                         <option value="tr">triangle</option>
@@ -103,7 +115,7 @@
                     <br><br>
 
                     <!--Blush-->
-                    <span>Blush</span>
+                    <span class="bold">Blush</span>
                     <br>
                     <select id="blush_control" onchange="update_layer('blush')">
                         <option selected value="">(none)</option>
@@ -112,13 +124,52 @@
                     <select>
                     <br><br>
 
-                <!--Tears-->
-                <span>Tears</span>
-                <br>
-                <select id="tears_control" onchange="update_layer('tears')">
+                    <!--Tears-->
+                    <span class="bold">Tears</span>
+                    <br>
+                    <select id="tears_control" onchange="update_layer('tears')">
                         <option selected value="">(none)</option>
-                </select>
-                <br><br>
+                        <option value="tda">double_stream_closed</option>
+                        <option value="tdb">double_stream_narrow</option>
+                        <option value="tdc">double_stream_regular</option>
+                        <option value="tdr">dried</option>
+                        <option value="tsa">single_pooled_closed</option>
+                        <option value="tsb">single_pooled_narrow</option>
+                        <option value="tsc">single_pooled_regular</option>
+                        <option value="tsd">single_stream_closed</option>
+                        <option value="tse">single_stream_narrow</option>
+                        <option value="tsf">single_stream_regular</option>
+                        <option value="tsz">spritz</option>
+                        <option value="twl">wink_pooled_left</option>
+                        <option value="twr">wink_pooled_right</option>
+                    </select>
+                    <br><br>
+
+                    <!--Emote-->
+                    <span class="bold">Emote</span>
+                    <br>
+                    <select id="emote_control" onchange="update_layer('emote')">
+                        <option selected value="">(none)</option>
+                        <option value="eaf">affection</option>
+                        <option value="ean">anger</option>
+                        <option value="edz">dazzle</option>
+                        <option value="edr">dread</option>
+                        <option value="eex">exclamation</option>
+                        <option value="eid">idea</option>
+                        <option value="eme">merry</option>
+                        <option value="eqm">question_mark</option>
+                        <option value="esd">sad</option>
+                        <option value="esi">sigh</option>
+                        <option value="esh">shock</option>
+                        <option value="esl">sleepy</option>
+                        <option value="eso">somber</option>
+                        <option value="esp">speech</option>
+                        <option value="esu">surprise</option>
+                    </select>
+                    <br><br>
+
+                    <span class="bold interactive red" onclick="reset_canvas()" title="Reset">[reset]</span>
+                    <br><br>
                 </div>
             </div>
         </div>
@@ -131,11 +182,20 @@
                 <img id="eyes_layer" class="image_layer" src="./img/eyes/normal.png"/> <!--Eyes-->
                 <img id="eyebrows_layer" class="image_layer" src="./img/eyebrows/normal.png"/> <!--Eyebrows-->
                 <img id="mouth_layer" class="image_layer" src="./img/mouth/smile.png"/> <!--Mouth-->
-                <img id="tears_layer" class="image_layer" src=""/> <!--Tears-->
+                <img id="tears_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Tears-->
+                <img id="emote_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Emote-->
                 <img id="table_layer" class="image_layer" src="./img/table/table-normal.png"/> <!--Table-->
             </div>
         </div>
         <script type="text/javascript">
+            // Validation collections
+            POSE_CODES = []
+            EYEBROW_CODES = []
+            EYE_CODES = []
+            MOUTH_CODES = []
+            BLUSH_CODES = []
+            TEAR_CODES = []
+            EMOTE_CODES = []
 
             // When an option is selected, this forces an update of the corresponding image tag's src to show the correct sprite
             function update_layer(layer) {
@@ -161,19 +221,148 @@
                     + $("#eyebrows_control :selected").val()
                     + $("#eyes_control :selected").val()
                     + $("#mouth_control :selected").val()
-                    + $("#tears_control :selected").val()
                     + $("#blush_control :selected").val()
+                    + $("#tears_control :selected").val()
+                    + $("#emote_control :selected").val()
                 $("#sprite_code").text(code)
             }
 
+            function get_from_sprite_code(spritecode){
+                // Get the two main portions of the spritecode
+                baseCode = spritecode.slice(0, 6);
+
+                if (baseCode.length < 6) {
+                    alert("Invalid spritecode: spritecodes must be 6+ characters")
+                    return
+                }
+
+                optionalCode = spritecode.slice(6);
+
+                // Get base subportions
+                pose = baseCode[0]
+                eyebrows = baseCode[1]
+                eyes = baseCode[2] + baseCode[3]
+                mouth = baseCode[4] + baseCode[5]
+
+                // Validate base subportions
+                if (!POSE_CODES.includes(pose)){
+                    alert("Invalid spritecode: undefined pose " + pose)
+                    return
+                }
+                if (!EYEBROW_CODES.includes(eyebrows)){
+                    alert("Invalid spritecode: undefined eyebrows " + eyebrows)
+                    return
+                }
+                if (!EYE_CODES.includes(eyes)){
+                    alert("Invalid spritecode: undefined eyes " + eyes)
+                    return
+                }
+                if (!MOUTH_CODES.includes(mouth)){
+                    alert("Invalid spritecode: undefined mouth " + mouth)
+                    return
+                }
+
+                blush = null
+                tears = null
+                emote = null
+
+                // Get, validate optional subportions
+                while (optionalCode) {
+                    if (BLUSH_CODES.includes(optionalCode[0])) {
+                        blush = optionalCode[0]
+                        optionalCode = optionalCode.slice(1)
+                    }
+                    else {
+                        if (TEAR_CODES.includes(optionalCode.slice(0,3))) {
+                            tears = optionalCode.slice(0,3)
+                            optionalCode = optionalCode.slice(3)
+                        }
+                        else if (EMOTE_CODES.includes(optionalCode.slice(0,3))) {
+                            emote = optionalCode.slice(0,3)
+                            optionalCode = optionalCode.slice(3)
+                        }
+                        else {
+                            alert("Invalid optional expression subcode " + optionalCode + ". (All optional parts must follow mandatory ones)")
+                            return
+                        }
+                    }
+                }
+                
+                // Finally update the visuals
+                $("#pose_control option[value='" + pose + "']").prop("selected", true)
+                $("#eyebrows_control option[value='" + eyebrows + "']").prop("selected", true)
+                $("#eyes_control option[value='" + eyes + "']").prop("selected", true)
+                $("#mouth_control option[value='" + mouth + "']").prop("selected", true)
+
+                if (blush !== null) {
+                    $("#blush_control option[value='" + blush + "']").prop("selected", true)
+                }
+                if (tears !== null) {
+                    $("#tears_control option[value='" + tears + "']").prop("selected", true)
+                }
+                if (emote !== null) {
+                    $("#emote_control option[value='" + emote + "']").prop("selected", true)
+                }
+                
+                update_layer("pose")
+                update_layer("eyebrows")
+                update_layer("eyes")
+                update_layer("mouth")
+                update_layer("blush")
+                update_layer("tears")
+                update_layer("emote")
+            }
+
             // Copies the currently displayed sprite code to the clipboard
-            function copy_code_to_clipboard() {
+            function copy_code_to_clipboard(object) {
+                object.innerHTML = "[copied!]"
                 navigator.clipboard.writeText($("#sprite_code").text())
+                setTimeout(() => {
+                    object.innerHTML = "[copy]"
+                }, 250);
+            }
+
+            // Reset everything by reloading the page
+            function reset_canvas(){
+                location.reload()
             }
 
             // When the page loads, show the sprite code for the default sprite combination
             $(document).ready(function() {
                 update_sprite_code()
+                
+                // Add map values for input spritecode checks based on select options
+
+                // Compulsary code subportions
+                $.each($("#pose_control option"), function(index, value) {
+                    POSE_CODES.push(value.value)
+                });
+                $.each($("#eyebrows_control option"), function(index, value) {
+                    EYEBROW_CODES.push(value.value)
+                });
+                $.each($("#eyes_control option"), function(index, value) {
+                    EYE_CODES.push(value.value)
+                });
+                $.each($("#mouth_control option"), function(index, value) {
+                    MOUTH_CODES.push(value.value)
+                });
+                
+                // Optional code subportions
+                $.each($("#blush_control option"), function(index, value) {
+                    if (value.value) {
+                        BLUSH_CODES.push(value.value)
+                    }
+                });
+                $.each($("#tears_control option"), function(index, value) {
+                    if (value.value) {
+                        TEAR_CODES.push(value.value)
+                    }
+                });
+                $.each($("#emote_control option"), function(index, value) {
+                    if (value.value) {
+                        EMOTE_CODES.push(value.value)
+                    }
+                });
             });
         </script>
     </body>
