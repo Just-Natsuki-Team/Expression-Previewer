@@ -107,11 +107,22 @@ function get_from_sprite_code(spritecode){
     if (blush !== null) {
         $("#blush_control option[value='" + blush + "']").prop("selected", true)
     }
+    else {
+        $("#blush_control option[value='']").prop("selected", true)
+    }
+
     if (tears !== null) {
         $("#tears_control option[value='" + tears + "']").prop("selected", true)
     }
+    else {
+        $("#tears_control option[value='']").prop("selected", true)
+    }
+
     if (emote !== null) {
         $("#emote_control option[value='" + emote + "']").prop("selected", true)
+    }
+    else {
+        $("#emote_control option[value='']").prop("selected", true)
     }
     
     update_layer("pose")
