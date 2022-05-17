@@ -41,7 +41,11 @@ function get_from_sprite_code(spritecode){
     // Get the two main portions of the spritecode
     baseCode = spritecode.slice(0, 6);
 
-    if (baseCode.length < 6) {
+    if (baseCode.length == 0) {
+        return
+    }
+
+    else if (baseCode.length < 6) {
         alert("Invalid spritecode: spritecodes must be 6+ characters")
         return
     }
@@ -151,6 +155,20 @@ function reset_canvas(){
 // When the page loads, show the sprite code for the default sprite combination
 $(document).ready(function() {
     update_sprite_code()
+
+    document.getElementById("input_code").addEventListener(
+        "keyup",
+        function() {
+            get_from_sprite_code($("#input_code").val())
+        }
+    )
+
+    document.getElementById("input_code").addEventListener(
+        "paste",
+        function() {
+            get_from_sprite_code($("#input_code").val())
+        }
+    )
     
     // Add map values for input spritecode checks based on select options
 

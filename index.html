@@ -18,14 +18,13 @@
                     <span id="sprite_code" class="bold highlight">N/A</span>
                     <br>
                     <span class="bold interactive" onclick="copy_code_to_clipboard(this)" title="Copy sprite code to clipboard">[copy]</span>
+                    <span class="bold interactive red" onclick="reset_canvas()" title="Reset">[reset]</span>
                     <br><br>
 
                     <!--Spritecode input-->
                     <span class="bold">View:</span>
                     <br>
                     <input id="input_code" type="text" placeholder="Enter a sprite code">
-                    <span class="bold interactive" onclick="get_from_sprite_code(document.getElementById('input_code').value)" title="View expression from sprite code">[view]</span>
-                    <br><br>
 
                     <!--Pose-->
                     <span class="bold">Pose</span>
@@ -33,7 +32,6 @@
                     <select id="pose_control">
                         <option selected value="1">sitting</option>
                     <select>
-                    <br><br>
 
                     <!--Eyes-->
                     <span class="bold">Eyes</span>
@@ -61,7 +59,6 @@
                         <option value="wl">wink_left</option>
                         <option value="wr">wink_right</option>
                     <select>
-                    <br><br>
 
                     <!--Eyebrows-->
                     <span class="bold">Eyebrows</span>
@@ -73,7 +70,6 @@
                         <option value="f">furrowed</option>
                         <option value="t">think</option>
                     <select>
-                    <br><br>
 
                     <!--Mouth-->
                     <span class="bold">Mouth</span>
@@ -113,7 +109,6 @@
                         <option value="up">upset</option>
                         <option value="wr">worried</option>
                     <select>
-                    <br><br>
 
                     <!--Blush-->
                     <span class="bold">Blush</span>
@@ -123,7 +118,6 @@
                         <option value="f">full</option>
                         <option value="l">light</option>
                     <select>
-                    <br><br>
 
                     <!--Tears-->
                     <span class="bold">Tears</span>
@@ -144,7 +138,6 @@
                         <option value="twl">wink_pooled_left</option>
                         <option value="twr">wink_pooled_right</option>
                     </select>
-                    <br><br>
 
                     <!--Emote-->
                     <span class="bold">Emote</span>
@@ -168,10 +161,6 @@
                         <option value="esp">speech</option>
                         <option value="esu">surprise</option>
                     </select>
-                    <br><br>
-
-                    <span class="bold interactive red" onclick="reset_canvas()" title="Reset">[reset]</span>
-                    <br><br>
                 </div>
             </div>
         </div>
