@@ -8,7 +8,7 @@ TEAR_CODES = []
 EMOTE_CODES = []
 
 // When an option is selected, this forces an update of the corresponding image tag's src to show the correct sprite
-function update_layer(layer) {
+function updateLayer(layer) {
     var text = $("#" + layer + "_control :selected").text()
     if (text === "(none)")
     {
@@ -22,11 +22,11 @@ function update_layer(layer) {
     }
 
     // Update the sprite code displayed to the user
-    update_sprite_code()
+    updateSpriteCode()
 }
 
 // This generates the sprite code for the currently selected sprite combination seen by the user
-function update_sprite_code() {
+function updateSpriteCode() {
     var code = $("#pose_control :selected").val()
         + $("#eyebrows_control :selected").val()
         + $("#eyes_control :selected").val()
@@ -37,7 +37,7 @@ function update_sprite_code() {
     $("#sprite_code").text(code)
 }
 
-function get_from_sprite_code(spritecode){
+function getFromSpriteCode(spritecode){
     // Get the two main portions of the spritecode
     baseCode = spritecode.slice(0, 6);
 
@@ -46,7 +46,7 @@ function get_from_sprite_code(spritecode){
     }
 
     else if (baseCode.length < 6) {
-        alert("Invalid spritecode: spritecodes must be 6+ characters")
+        updateSpriteCodeStatus(false, "Invalid spritecode: spritecodes must be 6+ characters")
         return
     }
 
@@ -60,19 +60,19 @@ function get_from_sprite_code(spritecode){
 
     // Validate base subportions
     if (!POSE_CODES.includes(pose)){
-        alert("Invalid spritecode: undefined pose " + pose)
+        updateSpriteCodeStatus(false, "Invalid spritecode: undefined pose " + pose)
         return
     }
     if (!EYEBROW_CODES.includes(eyebrows)){
-        alert("Invalid spritecode: undefined eyebrows " + eyebrows)
+        updateSpriteCodeStatus(false, "Invalid spritecode: undefined eyebrows " + eyebrows)
         return
     }
     if (!EYE_CODES.includes(eyes)){
-        alert("Invalid spritecode: undefined eyes " + eyes)
+        updateSpriteCodeStatus(false, "Invalid spritecode: undefined eyes " + eyes)
         return
     }
     if (!MOUTH_CODES.includes(mouth)){
-        alert("Invalid spritecode: undefined mouth " + mouth)
+        updateSpriteCodeStatus(false, "Invalid spritecode: undefined mouth " + mouth)
         return
     }
 
@@ -96,7 +96,7 @@ function get_from_sprite_code(spritecode){
                 optionalCode = optionalCode.slice(3)
             }
             else {
-                alert("Invalid optional expression subcode " + optionalCode + ". (All optional parts must follow mandatory ones)")
+                updateSpriteCodeStatus(false, "Invalid optional expression subcode " + optionalCode + ". (All optional parts must follow mandatory ones)")
                 return
             }
         }
@@ -129,17 +129,18 @@ function get_from_sprite_code(spritecode){
         $("#emote_control option[value='']").prop("selected", true)
     }
     
-    update_layer("pose")
-    update_layer("eyebrows")
-    update_layer("eyes")
-    update_layer("mouth")
-    update_layer("blush")
-    update_layer("tears")
-    update_layer("emote")
+    updateLayer("pose")
+    updateLayer("eyebrows")
+    updateLayer("eyes")
+    updateLayer("mouth")
+    updateLayer("blush")
+    updateLayer("tears")
+    updateLayer("emote")
+    updateSpriteCodeStatus(true)
 }
 
 // Copies the currently displayed sprite code to the clipboard
-function copy_code_to_clipboard(object) {
+function copyCodeToClipboard(object) {
     object.innerHTML = "[copied!]"
     navigator.clipboard.writeText($("#sprite_code").text())
     setTimeout(() => {
@@ -148,25 +149,37 @@ function copy_code_to_clipboard(object) {
 }
 
 // Reset everything by reloading the page
-function reset_canvas(){
+function resetCanvas(){
     location.reload()
+}
+
+// Updates the sprite code status indicator
+function updateSpriteCodeStatus(isValid, hint="Invalid sprite code.") {
+    if (isValid) {
+        $("#sprite_code_status").attr("src", "./img/spritecode_status/valid.png?" + new Date())
+        $("#sprite_code_status").attr("title", "Valid spritecode!")
+    }
+    else {
+        $("#sprite_code_status").attr("src", "./img/spritecode_status/invalid.png?" + new Date())
+        $("#sprite_code_status").attr("title", hint)
+    }
 }
 
 // When the page loads, show the sprite code for the default sprite combination
 $(document).ready(function() {
-    update_sprite_code()
+    updateSpriteCode()
 
     document.getElementById("input_code").addEventListener(
         "keyup",
         function() {
-            get_from_sprite_code($("#input_code").val())
+            getFromSpriteCode($("#input_code").val())
         }
     )
 
     document.getElementById("input_code").addEventListener(
         "paste",
         function() {
-            get_from_sprite_code($("#input_code").val())
+            getFromSpriteCode($("#input_code").val())
         }
     )
     

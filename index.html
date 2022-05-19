@@ -17,14 +17,17 @@
                     <br>
                     <span id="sprite_code" class="bold highlight">N/A</span>
                     <br>
-                    <span class="bold interactive" onclick="copy_code_to_clipboard(this)" title="Copy sprite code to clipboard">[copy]</span>
-                    <span class="bold interactive red" onclick="reset_canvas()" title="Reset">[reset]</span>
+                    <span class="bold interactive" onclick="copyCodeToClipboard(this)" title="Copy sprite code to clipboard">[copy]</span>
+                    <span class="bold interactive red" onclick="resetCanvas()" title="Reset">[reset]</span>
                     <br><br>
 
                     <!--Spritecode input-->
-                    <span class="bold">View:</span>
-                    <br>
-                    <input id="input_code" type="text" placeholder="Enter a sprite code">
+                    <div class="property_container">
+                        <span class="bold">View:</span>
+                        <br>
+                        <input id="input_code" type="text" placeholder="Enter a sprite code">
+                        <img id="sprite_code_status" title="Valid spritecode!" src="./img/spritecode_status/valid.png"></img>
+                    </div>
 
                     <!--Pose-->
                     <span class="bold">Pose</span>
@@ -36,7 +39,7 @@
                     <!--Eyes-->
                     <span class="bold">Eyes</span>
                     <br>
-                    <select id="eyes_control" onchange="update_layer('eyes')">
+                    <select id="eyes_control" onchange="updateLayer('eyes')">
                         <option value="bk">baka</option>
                         <option value="ct">circle_tears</option>
                         <option value="ch">closed_happy</option>
@@ -63,7 +66,7 @@
                     <!--Eyebrows-->
                     <span class="bold">Eyebrows</span>
                     <br>
-                    <select id="eyebrows_control" onchange="update_layer('eyebrows')">
+                    <select id="eyebrows_control" onchange="updateLayer('eyebrows')">
                         <option selected value="n">normal</option>
                         <option value="u">up</option>
                         <option value="k">knit</option>
@@ -74,7 +77,7 @@
                     <!--Mouth-->
                     <span class="bold">Mouth</span>
                     <br>
-                    <select id="mouth_control" onchange="update_layer('mouth')">
+                    <select id="mouth_control" onchange="updateLayer('mouth')">
                         <option value="aj">ajar</option>
                         <option value="an">angry</option>
                         <option value="aw">awe</option>
@@ -113,7 +116,7 @@
                     <!--Blush-->
                     <span class="bold">Blush</span>
                     <br>
-                    <select id="blush_control" onchange="update_layer('blush')">
+                    <select id="blush_control" onchange="updateLayer('blush')">
                         <option selected value="">(none)</option>
                         <option value="f">full</option>
                         <option value="l">light</option>
@@ -122,7 +125,7 @@
                     <!--Tears-->
                     <span class="bold">Tears</span>
                     <br>
-                    <select id="tears_control" onchange="update_layer('tears')">
+                    <select id="tears_control" onchange="updateLayer('tears')">
                         <option selected value="">(none)</option>
                         <option value="tda">double_stream_closed</option>
                         <option value="tdb">double_stream_narrow</option>
@@ -142,7 +145,7 @@
                     <!--Emote-->
                     <span class="bold">Emote</span>
                     <br>
-                    <select id="emote_control" onchange="update_layer('emote')">
+                    <select id="emote_control" onchange="updateLayer('emote')">
                         <option selected value="">(none)</option>
                         <option value="eaf">affection</option>
                         <option value="ean">anger</option>

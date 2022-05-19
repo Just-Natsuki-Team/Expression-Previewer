@@ -17,7 +17,17 @@ font-size: 1.25vw;
 select, input {
   width: 17.5vw;
   margin: 0.05vw;
+}
+
+input {
+  width: 13vw;
+  float: left;
+}
+
+.property_container {
+  width: 100%;
   margin-bottom: 0.75vw;
+  display: inline-block;
 }
 
 option, input {
@@ -27,10 +37,6 @@ option, input {
 option:checked {
   font-weight: 700;
   color: chocolate;
-}
-
-.image_layer {
-  position: absolute;
 }
 
 .bold {
@@ -92,7 +98,14 @@ user-select: none;
   text-align: center;
 }
 
-img {
+#sprite_code_status {
+  display: inline;
+  width: 1.5vw;
+  padding: 0.1vw;
+  cursor: help;
+}
+
+.image_layer {
   position: absolute;
   top: 50%;
   left: 50%;
