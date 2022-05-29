@@ -6,6 +6,7 @@ MOUTH_CODES = []
 BLUSH_CODES = []
 TEAR_CODES = []
 EMOTE_CODES = []
+SWEAT_CODES = []
 
 // When an option is selected, this forces an update of the corresponding image tag's src to show the correct sprite
 function updateLayer(layer) {
@@ -34,6 +35,7 @@ function updateSpriteCode() {
         + $("#blush_control :selected").val()
         + $("#tears_control :selected").val()
         + $("#emote_control :selected").val()
+        + $("#sweat_control :selected").val()
     $("#sprite_code").text(code)
 }
 
@@ -79,6 +81,7 @@ function getFromSpriteCode(spritecode){
     blush = null
     tears = null
     emote = null
+    sweat = null
 
     // Get, validate optional subportions
     while (optionalCode) {
@@ -93,6 +96,10 @@ function getFromSpriteCode(spritecode){
             }
             else if (EMOTE_CODES.includes(optionalCode.slice(0,3))) {
                 emote = optionalCode.slice(0,3)
+                optionalCode = optionalCode.slice(3)
+            }
+            else if (SWEAT_CODES.includes(optionalCode.slice(0,3))) {
+                sweat = optionalCode.slice(0,3)
                 optionalCode = optionalCode.slice(3)
             }
             else {
@@ -128,6 +135,13 @@ function getFromSpriteCode(spritecode){
     else {
         $("#emote_control option[value='']").prop("selected", true)
     }
+
+    if (sweat !== null) {
+        $("#sweat_control option[value='" + emote + "']").prop("selected", true)
+    }
+    else {
+        $("#sweat_control option[value='']").prop("selected", true)
+    }
     
     updateLayer("pose")
     updateLayer("eyebrows")
@@ -136,6 +150,7 @@ function getFromSpriteCode(spritecode){
     updateLayer("blush")
     updateLayer("tears")
     updateLayer("emote")
+    updateLayer("sweat")
     updateSpriteCodeStatus(true)
 }
 
@@ -213,6 +228,11 @@ $(document).ready(function() {
     $.each($("#emote_control option"), function(index, value) {
         if (value.value) {
             EMOTE_CODES.push(value.value)
+        }
+    });
+    $.each($("#sweat_control option"), function(index, value) {
+        if (value.value) {
+            SWEAT_CODES.push(value.value)
         }
     });
 });

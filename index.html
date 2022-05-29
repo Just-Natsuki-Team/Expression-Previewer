@@ -163,6 +163,18 @@
                         <option value="eso">somber</option>
                         <option value="esp">speech</option>
                         <option value="esu">surprise</option>
+                        <option value="esd">sweat_drop</option>
+                        <option value="esz">sweat_spritz</option>
+                        <option value="ess">sweat_small</option>
+                    </select>
+
+                    <!--Sweat-->
+                    <span class="bold">Sweat</span>
+                    <br>
+                    <select id="sweat_control" onchange="updateLayer('sweat')">
+                        <option selected value="">(none)</option>
+                        <option value="sbl">bead_left</option>
+                        <option value="sbr">bead_right</option>
                     </select>
                 </div>
             </div>
@@ -178,6 +190,7 @@
                 <img id="mouth_layer" class="image_layer" src="./img/mouth/smile.png"/> <!--Mouth-->
                 <img id="tears_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Tears-->
                 <img id="emote_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Emote-->
+                <img id="sweat_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Emote-->
                 <img id="table_layer" class="image_layer" src="./img/table/table-normal.png"/> <!--Table-->
                 <noscript>
                     <img class="image_layer" src="./img/enable_js.png"/>
