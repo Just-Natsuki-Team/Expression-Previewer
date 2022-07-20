@@ -137,7 +137,7 @@ function getFromSpriteCode(spritecode){
     }
 
     if (sweat !== null) {
-        $("#sweat_control option[value='" + emote + "']").prop("selected", true)
+        $("#sweat_control option[value='" + sweat + "']").prop("selected", true)
     }
     else {
         $("#sweat_control option[value='']").prop("selected", true)
