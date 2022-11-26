@@ -187,6 +187,7 @@ $(document).ready(function() {
     document.getElementById("input_code").addEventListener(
         "keyup",
         function() {
+            $("#input_code").val($("#input_code").val().trim())
             getFromSpriteCode($("#input_code").val())
         }
     )
@@ -194,6 +195,7 @@ $(document).ready(function() {
     document.getElementById("input_code").addEventListener(
         "paste",
         function() {
+            $("#input_code").val($("#input_code").val().trim())
             getFromSpriteCode($("#input_code").val())
         }
     )
