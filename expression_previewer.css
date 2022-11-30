@@ -11,17 +11,19 @@ header {
 }
 
 select, input, span {
-font-size: 1.25vw;
+  font-size: 1.25vw;
 }
 
 select, input {
   width: 17.5vw;
   margin: 0.05vw;
+  text-align: center;
 }
 
 input {
   width: 13vw;
   float: left;
+  
 }
 
 .property_container {
