@@ -165,7 +165,16 @@ function copyCodeToClipboard(object) {
 
 // Reset everything by reloading the page
 function resetCanvas(){
-    location.reload()
+    $("option[default_option]").prop("selected", true)
+    updateSpriteCode()
+    updateLayer("pose")
+    updateLayer("eyebrows")
+    updateLayer("eyes")
+    updateLayer("mouth")
+    updateLayer("blush")
+    updateLayer("tears")
+    updateLayer("emote")
+    updateLayer("sweat")
 }
 
 // Updates the sprite code status indicator
