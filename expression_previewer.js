@@ -20,6 +20,11 @@ function updateLayer(layer) {
     {
         // We use Date here to ensure images aren't cached by spoofing a request for the newest ver.
         $("#" + layer + "_layer").attr("src", "./img/" + layer + "/" + text + ".png" + "?" + new Date())
+        
+        // If updating pose, also update arms, as they are linked
+        if (layer === "pose"){
+            $("#arms_layer").attr("src", "./img/arms/" + text + ".png" + "?" + new Date())
+        }
     }
 
     // Update the sprite code displayed to the user

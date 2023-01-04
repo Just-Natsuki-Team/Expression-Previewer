@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Just Natsuki expression previewer</title>
@@ -32,8 +33,11 @@
                     <!--Pose-->
                     <span class="bold">Pose</span>
                     <br>
-                    <select id="pose_control">
+                    <select id="pose_control" onchange="updateLayer('pose')">
                         <option default_option selected value="1">sitting</option>
+                        <option value="2">arms_crossed_body</option>
+                        <option value="3">arms_crossed_desk</option>
+                        <option value="4">fingers_on_desk</option>
                     <select>
 
                     <!--Eyes-->
@@ -199,6 +203,7 @@
                 <img id="emote_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Emote-->
                 <img id="sweat_layer" class="image_layer" src="./img/etc/empty.png"/> <!--Emote-->
                 <img id="table_layer" class="image_layer" src="./img/table/table-normal.png"/> <!--Table-->
+                <img id="arms_layer" class="image_layer" src="./img/arms/sitting.png"> <!--Arms-->
                 <noscript>
                     <img class="image_layer" src="./img/enable_js.png"/>
                 </noscript>
