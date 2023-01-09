@@ -23,6 +23,7 @@ function updateLayer(layer) {
         
         // If updating pose, also update arms, as they are linked
         if (layer === "pose"){
+            $("#desk_shadow_layer").attr("src", "./img/desk_shadow/" + text + ".png" + "?" + new Date())
             $("#arms_layer").attr("src", "./img/arms/" + text + ".png" + "?" + new Date())
         }
     }
