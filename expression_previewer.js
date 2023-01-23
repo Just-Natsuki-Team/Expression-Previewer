@@ -169,7 +169,7 @@ function copyCodeToClipboard(object) {
     }, 250);
 }
 
-// Reset everything by reloading the page
+// Reset everything
 function resetCanvas(){
     $("option[default_option]").prop("selected", true)
     updateSpriteCode()
@@ -181,6 +181,7 @@ function resetCanvas(){
     updateLayer("tears")
     updateLayer("emote")
     updateLayer("sweat")
+    $("#input_code").val("")
 }
 
 // Updates the sprite code status indicator
