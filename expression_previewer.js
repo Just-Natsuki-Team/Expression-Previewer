@@ -218,7 +218,7 @@ $(document).ready(function() {
     
     // Add map values for input spritecode checks based on select options
 
-    // Compulsary code subportions
+    // Compulsory code subportions
     $.each($("#pose_control option"), function(index, value) {
         POSE_CODES.push(value.value)
     });
